@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=your-username
+      - POSTGRES_PASSWORD=your-password
+      - POSTGRES_DB=your-database
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: always
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://your-username:your-password@db/your-database
+    command: npm run dev
