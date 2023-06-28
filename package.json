@@ -1,0 +1,19 @@
+{
+  "name": "cc-bikers",
+  "version": "1.0.0",
+  "description": "Online Map Cable Car Opening Hours",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steime/CC-Bikers.git"
+  },
+  "author": "Ele, Steime",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steime/CC-Bikers/issues"
+  },
+  "homepage": "https://github.com/steime/CC-Bikers#readme"
+}
