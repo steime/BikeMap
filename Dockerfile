@@ -19,5 +19,8 @@ COPY . .
 # Expose the port on which your Node.js app listens
 EXPOSE 3000
 
+# Build the TypeScript code
+RUN npm run build
+
 # Specify the command to run your Node.js app
-CMD ["node", "index.js"]
+CMD ["npm", "start"]
