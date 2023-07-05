@@ -6,33 +6,33 @@
 
 ## Datastructure
 * Gebiet
-    * UUID (Primary Key)
-    * Öffnungszeiten
-    * Datum
-    * Name
-    * x-Koordinate
-    * y-Koordinate
-    * Anlagen [Liste] (Foreign Key)
+    * UUID (Primary Key) *
+    * Öffnungszeiten * 
+    * Datum *
+    * Name *
+    * x-Koordinate *
+    * y-Koordinate *
+    * Anlagen [Liste] (Foreign Key) *
     * Anzahl Anlagen
     * Bewertung
     * Region
     * Webseite
     * Preis
-    * Crawler Table (Foreign Key)
+    * Crawler Table (Foreign Key) *
   
 * Anlage
-    * UUID (Primary Key)
-    * Betriebszeit
-    * Betriebsdaten ()
+    * UUID (Primary Key) *
+    * Betriebszeit *
+    * Betriebsdaten () *
     * Biketransport (True/False)
-    * Name
+    * Name *
     * Status (in Betrieb/geschlossen)
-    * Trails [List] (Foreign Key)
+    * Trails [List] (Foreign Key) *
 
 * Trails
-    * UUID (Primary Key)
+    * UUID (Primary Key) * 
     * Name
-    * Status (offen/zu)
+    * Status (offen/zu) *
     * Länge
     * Tiefenmeter
     * Schwierigkeit
@@ -40,7 +40,7 @@
     * Trailart ()
 
 * Crawling Links
-    * UUID (Primary Key)
-    * BaseURL
-    * XPath
+    * UUID (Primary Key) *
+    * BaseURL *
+    * XPath *
     * ...
