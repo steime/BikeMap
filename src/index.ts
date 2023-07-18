@@ -12,15 +12,20 @@ app.get('/', (req: Request, res: Response) => {
   res.send('<h1>Hello World!</h1><br>Okletsgo23');
 });
 
-app.get('/test', (req: Request, res: Response) => {
-  res.send('<h1>Hello World!</h1><br>Hallo Veloo');
+app.get('/test', async (req: Request, res: Response) => {
+  try {
+    // Read user data from the database
+    const users = await User.findByPk(1);
+    res.json(users);
+  } catch (error) {
+    console.error('Error reading users:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
-
-
 
 // Test the connection, wait 5 seconds to connect
 setTimeout(() => {
