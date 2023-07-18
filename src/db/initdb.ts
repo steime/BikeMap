@@ -1,16 +1,11 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
+import { User } from "./user";
 
 export  const sequelize = new Sequelize(process.env.DATABASE_URL!, {
     dialect: 'postgres',
-  });
+});
 
-export class User extends Model {
-    public id!: number;
-    public name!: string;
-    public email!: string;
-  }
-  
-  User.init(
+User.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -31,13 +26,5 @@ export class User extends Model {
       sequelize,
       modelName: 'User',
     }
-  );
+);
 
-  export const createUser = async (name: string, email: string) => {
-    try {
-      const user = await User.create({ name, email });
-      console.log('User created:', user.toJSON());
-    } catch (error) {
-      console.error('Error creating user:', error);
-    }
-  };

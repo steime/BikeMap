@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import { User, createUser, sequelize } from './db/models';
+import { sequelize } from './db/initdb';
+import { User } from './db/user';
 
 require('dotenv').config();
 
