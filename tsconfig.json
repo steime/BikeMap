@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2021",
+    "target": "es6",
     "module": "commonjs",
-    "strict": true,
     "esModuleInterop": true,
-    "outDir": "dist"
+    "outDir": "./dist",
+    "rootDir": "./src",
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/views/**/*.ejs",
+    "src/map.ts"
   ],
   "exclude": [
     "node_modules"
