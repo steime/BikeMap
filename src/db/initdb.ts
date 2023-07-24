@@ -1,4 +1,4 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 import { User } from "./user";
 
 export  const sequelize = new Sequelize(process.env.DATABASE_URL!, {

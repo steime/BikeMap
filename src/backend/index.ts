@@ -1,31 +1,35 @@
 import express, { Request, Response } from 'express';
-import { sequelize } from './db/initdb';
-import { User } from './db/user';
-import path from 'path';
-import { Location, locations } from './location';
+
+import { User } from '../db/user';
+import { sequelize } from '../db/initdb';
+
 
 require('dotenv').config();
 
 const app = express();
 const port = 3000;
 
-// Set the view engine to EJS
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Add CORS headers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+}); 
  
-app.use(express.static(path.join(__dirname, '../dist')));
+// An array of locations
+const locations = [
+  { id: 1, name: 'Location 1', latitude: 52.5200, longitude: 13.4050 },
+  { id: 2, name: 'Location 2', latitude: 52.45, longitude: 13.5 },
+  // ... more locations 
+];
 
-app.get('/', (req: Request, res: Response) => {
-  res.render('index');  
-});
-
-app.get('/location/:name', (req: Request, res: Response) => {
-  const name = req.params.name;
-  const location = locations.find((loc: Location) => loc.name === name);
-  if (!location) {
-    return res.status(404).send('Location not found');
-  }
-  res.render('location', { location }); 
+// Locations API endpoint
+app.get('/api/locations', (req, res) => {
+  res.status(200).json(locations);
 });
 
 app.get('/test', async (req: Request, res: Response) => {

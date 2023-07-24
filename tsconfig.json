@@ -7,9 +7,8 @@
     "rootDir": "./src",
   },
   "include": [
-    "src/**/*.ts",
-    "src/views/**/*.ejs",
-    "src/map.ts"
+    "src/backend/*.ts",
+    "src/db/*.ts"
   ],
   "exclude": [
     "node_modules"
