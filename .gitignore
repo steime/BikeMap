@@ -130,6 +130,7 @@ dist
 .pnp.*
 
 # ignore databasefiles
+/backend/pgdata
 /pgdata
 
 .env

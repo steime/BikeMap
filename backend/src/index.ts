@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
+import { User } from './db/user';
+import { sequelize } from './db/initdb';
 
-import { User } from '../db/user';
-import { sequelize } from '../db/initdb';
 
 
 require('dotenv').config();
