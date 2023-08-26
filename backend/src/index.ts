@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
-import { User } from './db/user';
-import { sequelize } from './db/initdb';
+import dotenv from 'dotenv'
+import { Sequelize } from 'sequelize';
 
+dotenv.config();
 
-
-require('dotenv').config();
+export const databaseUrl = process.env.DATABASE_URL;
 
 const app = express();
 const port = 3000;
@@ -27,24 +27,18 @@ const locations = [
   // ... more locations 
 ];
 
-// Locations API endpoint
+// Locations API endpoint 
 app.get('/api/locations', (req, res) => {
   res.status(200).json(locations);
 });
 
-app.get('/test', async (req: Request, res: Response) => {
-  try {
-    // Read user data from the database
-    const users = await User.findByPk(1); 
-    res.json(users);
-  } catch (error) {
-    console.error('Error reading users:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
+});
+
+console.log('DATABASE_URL from env:', process.env.DATABASE_URL);  
+export const sequelize = new Sequelize(databaseUrl, {
+  dialect: 'postgres',
 });
 
 // Test the connection, wait 5 seconds to connect
@@ -54,9 +48,6 @@ sequelize
   .then(async () => {
     console.log('Connection to the database has been established successfully.');
     
-    // Call the createUser function with name and email parameters
-    await User.sync(); 
-    // createUser('John Doe', 'john@example.com');
   })
   .catch((error) => {
     console.error('Unable to connect to the database:', error);

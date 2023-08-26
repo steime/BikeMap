@@ -21,9 +21,9 @@ services:
     depends_on:
       - db
     volumes:
-      - ./src:/app/src
+      - ./backend/src:/app/src
       - /app/node_modules
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgres://your-username:your-password@db/your-database
+      - DATABASE_URL=postgres://your-username:your-password@db:5432/your-database
     command: npm run dev
