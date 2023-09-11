@@ -22,8 +22,8 @@ app.use((req, res, next) => {
  
 // An array of locations
 const locations = [
-  { id: 1, name: 'Location 1', latitude: 52.5200, longitude: 13.4050 },
-  { id: 2, name: 'Location 2', latitude: 52.45, longitude: 13.5 },
+  { id: 1, name: 'Davos', latitude: 46.80, longitude: 9.837 },
+  { id: 2, name: 'Laax', latitude: 46.80, longitude: 9.25 },
   // ... more locations 
 ];
 

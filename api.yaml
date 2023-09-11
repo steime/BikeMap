@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: CC-Bikers - OpenAPI 3.0
+  description: |- 
+    Get data for the cc bikers app
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+tags:
+  - name: gebiet
+    description: Everything about the gebiet
+  - name: anlage
+    description: Everything about an anlage
+  - name: trail
+    description: Everything about a trail
+paths:
+  /gebiet:
+    put:
+      tags:
+        - gebiet
+      summary: Update an existing gebiet
+      description: Update an existing gebiet by Id
+      operationId: updateGebiet
+      requestBody:
+        description: Update an existent gebiet
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gebiet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Gebiet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Gebiet'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gebiet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Gebiet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Gebiet not found
+        '405':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:gebiet
+            - read:gebiet
+    post:
+      tags:
+        - gebiet
+      summary: Add a new gebiet 
+      description: Add a new gebiet
+      operationId: addgebiet
+      requestBody:
+        description: Create a gebiet
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gebiet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Gebiet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Gebiet'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gebiet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Gebiet'
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:Gebiet
+            - read:Gebiet
+  /gebiet/{gebietId}:
+    get:
+      tags:
+        - gebiet
+      summary: Find gebiet by ID
+      description: Returns a single gebiet
+      operationId: getGebietById
+      parameters:
+        - name: gebietId
+          in: path
+          description: ID of gebiet to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gebiet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Gebiet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Gebiet not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:Gebiet
+            - read:Gebiet
+components:
+  schemas:
+    Gebiet:
+      type: object
+      properties:
+        id: 
+          type: integer
+          format: int 64
+          example: 1
+        opening_hours:
+          type: string
+          format: tbd
+          example: "0800 - 1700"
+      xml:
+        name: gebiet
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          example: 437 Lytton
+        city:
+          type: string
+          example: Palo Alto
+        state:
+          type: string
+          example: CA
+        zip:
+          type: string
+          example: '94301'
+      xml:
+        name: address
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+  requestBodies:
+    Pet:
+      description: Pet object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Gebiet'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Gebiet'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Gebiet'
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

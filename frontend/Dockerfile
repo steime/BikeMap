@@ -11,8 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the rest of the application code into the container
-COPY index.html /app
-COPY app.js /app
+COPY . .
 
 # Expose the port on which your development server will run (e.g., 3000)
 EXPOSE 8080
