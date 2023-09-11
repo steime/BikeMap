@@ -27,3 +27,12 @@ services:
       - NODE_ENV=development
       - DATABASE_URL=postgres://your-username:your-password@db:5432/your-database
     command: npm run dev
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/app

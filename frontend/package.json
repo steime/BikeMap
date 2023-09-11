@@ -1,0 +1,23 @@
+{
+  "name": "cc-bikers-frontend",
+  "version": "1.0.0",
+  "description": "Online Map Cable Car Opening Hours",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -s /app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steime/CC-Bikers.git"
+  },
+  "author": "Ele, Steime",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steime/CC-Bikers/issues"
+  },
+  "homepage": "https://github.com/steime/CC-Bikers#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
