@@ -15,129 +15,386 @@ tags:
     description: Everything about a trail
 paths:
   /gebiet:
+    get:
+      tags:
+        - gebiet
+      summary: Get a list of gebiete
+      description: Retrieve a list of all gebiete.
+      responses:
+        '200':
+          description: A list of gebiete
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gebiet'
+
+    post:
+      tags:
+        - gebiet
+      summary: Create a new gebiet
+      description: Add a new gebiet to the list.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gebiet'
+      responses:
+        '201':
+          description: Gebiet created
+
+  /gebiet/{id}:
+    get:
+      tags:
+        - gebiet
+      summary: Get a specific gebiet
+      description: Retrieve details about a specific gebiet.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the gebiet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gebiet'
+
     put:
       tags:
         - gebiet
       summary: Update an existing gebiet
-      description: Update an existing gebiet by Id
-      operationId: updateGebiet
-      requestBody:
-        description: Update an existent gebiet
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Gebiet'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Gebiet'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Gebiet'
-        required: true
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Gebiet'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Gebiet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Gebiet not found
-        '405':
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - write:gebiet
-            - read:gebiet
-    post:
-      tags:
-        - gebiet
-      summary: Add a new gebiet 
-      description: Add a new gebiet
-      operationId: addgebiet
-      requestBody:
-        description: Create a gebiet
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Gebiet'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Gebiet'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Gebiet'
-        required: true
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Gebiet'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Gebiet'
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:Gebiet
-            - read:Gebiet
-  /gebiet/{gebietId}:
-    get:
-      tags:
-        - gebiet
-      summary: Find gebiet by ID
-      description: Returns a single gebiet
-      operationId: getGebietById
+      description: Update details of a specific gebiet.
       parameters:
-        - name: gebietId
+        - name: id
           in: path
-          description: ID of gebiet to return
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gebiet'
       responses:
         '200':
-          description: successful operation
+          description: Gebiet updated
+
+    delete:
+      tags:
+        - gebiet
+      summary: Delete a gebiet
+      description: Remove a specific gebiet from the list.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Gebiet deleted
+  /anlage:
+    get:
+      tags:
+        - anlage
+      summary: Get a list of anlagen
+      description: Retrieve a list of all anlagen.
+      responses:
+        '200':
+          description: A list of anlagen
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Gebiet'          
-            application/xml:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Anlage'
+
+    post:
+      tags:
+        - anlage
+      summary: Create a new anlage
+      description: Add a new anlage to the list.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Anlage'
+      responses:
+        '201':
+          description: Anlage created
+
+  /anlage/{id}:
+    get:
+      tags:
+        - anlage
+      summary: Get a specific anlage
+      description: Retrieve details about a specific anlage.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the anlage
+          content:
+            application/json:
               schema:
-                $ref: '#/components/schemas/Gebiet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Gebiet not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:Gebiet
-            - read:Gebiet
+                $ref: '#/components/schemas/Anlage'
+
+    put:
+      tags:
+        - anlage
+      summary: Update an existing anlage
+      description: Update details of a specific anlage.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Anlage'
+      responses:
+        '200':
+          description: Anlage updated
+
+    delete:
+      tags:
+        - anlage
+      summary: Delete an anlage
+      description: Remove a specific anlage from the list.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Anlage deleted
+
+  /trail:
+    get:
+      tags:
+        - trail
+      summary: Get a list of trails
+      description: Retrieve a list of all trails.
+      responses:
+        '200':
+          description: A list of trails
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Trail'
+
+    post:
+      tags:
+        - trail
+      summary: Create a new trail
+      description: Add a new trail to the list.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trail'
+      responses:
+        '201':
+          description: Trail created
+
+  /trail/{id}:
+    get:
+      tags:
+        - trail
+      summary: Get a specific trail
+      description: Retrieve details about a specific trail.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the trail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trail'
+
+    put:
+      tags:
+        - trail
+      summary: Update an existing trail
+      description: Update details of a specific trail.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trail'
+      responses:
+        '200':
+          description: Trail updated
+
+    delete:
+      tags:
+        - trail
+      summary: Delete a trail
+      description: Remove a specific trail from the list.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Trail deleted    
 components:
   schemas:
     Gebiet:
       type: object
       properties:
-        id: 
-          type: integer
-          format: int 64
-          example: 1
-        opening_hours:
+        id:
           type: string
-          format: tbd
-          example: "0800 - 1700"
-      xml:
-        name: gebiet
+          format: uuid
+        name:
+          type: string
+        lastUpdate:
+          type: string
+          format: date
+        openingHours:
+          type: string
+        numberOfAnlagen:
+          type: integer
+        x-Coordinate:
+          type: number
+          format: double
+        y-Coordinate:
+          type: number
+          format: double
+        website:
+          type: string
+          format: uri
+        region:
+          type: string
+        rating:
+          type: number
+          format: float
+        price:
+          type: number
+          format: float
+        Anlagen:
+          type: array
+          items:
+            type: string
+            format: uuid
+      required:
+        - id
+        - name
+        - lastUpdate
+        - openingHours
+        - numberOfAnlagen
+        - x-Koordinate
+        - y-Koordinate
+        - Anlagen
+
+    Anlage:
+      type: object
+      properties:
+        UUID:
+          type: string
+          format: uuid
+        Betriebszeit:
+          type: string
+        Betriebsdaten:
+          type: string
+        Biketransport:
+          type: boolean
+        Name:
+          type: string
+        Status:
+          type: string
+          enum: [in Betrieb, geschlossen]
+        Trails:
+          type: array
+          items:
+            type: string
+            format: uuid
+      required:
+        - UUID
+        - Betriebszeit
+        - Betriebsdaten
+        - Name
+        - Trails
+
+    Trail:
+      type: object
+      properties:
+        UUID:
+          type: string
+          format: uuid
+        Name:
+          type: string
+        Status:
+          type: string
+          enum: [offen, zu]
+        Länge:
+          type: number
+          format: float
+        Tiefenmeter:
+          type: number
+          format: float
+        Schwierigkeit:
+          type: string
+        Bewertung:
+          type: number
+          format: float
+        Trailart:
+          type: string
+      required:
+        - UUID
+        - Status
+
+    CrawlingLinks:
+      type: object
+      properties:
+        UUID:
+          type: string
+          format: uuid
+        BaseURL:
+          type: string
+          format: uri
+        XPath:
+          type: string
+      required:
+        - UUID
+        - BaseURL
+        - XPath
+
     Address:
       type: object
       properties:
