@@ -1,16 +1,26 @@
 fetch('http://localhost:3000/api/locations')
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
   .then(locations => {
-    var map = L.map('map').setView([locations[0].latitude, locations[0].longitude], 13);
+    console.log(locations);  // Corrected to 'locations'
+    var map = L.map('map').setView([locations[0].xCoordinate, locations[0].yCoordinate], 13);  // Adjust these coordinates as needed
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
     locations.forEach(location => {
-      var marker = L.marker([location.latitude, location.longitude]).addTo(map);
-
-      // Bind a popup to the marker
-      marker.bindPopup(`<b>${location.name}</b><br>Latitude: ${location.latitude}<br>Longitude: ${location.longitude}`);
+      if (typeof location.xCoordinate === 'number' && typeof location.yCoordinate === 'number') {
+        var marker = L.marker([location.xCoordinate, location.yCoordinate]).addTo(map);
+        marker.bindPopup(`<b>${location.name}</b><br>Latitude: ${location.xCoordinate}<br>Longitude: ${location.yCoordinate}`);
+      } else {
+        console.log('Invalid coordinates for location:', location);
+      }
     });
-});
+  }).catch(error => {
+    console.error('Fetch error:', error);
+  });;

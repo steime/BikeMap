@@ -4,6 +4,9 @@
 * Build Command `docker-compose up --build`  
 * Run command `docker-compose up`
 
+## Access DB
+`docker exec -it 92af1a15f91a68e5724da3fe35767e76098471eea98de3bef94b1fa0c6894006 psql -U your-username -d your-database`
+
 ## Datastructure
 * Gebiet
     * UUID (Primary Key) *

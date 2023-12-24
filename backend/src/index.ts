@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv'
 import { createGebiet } from './db/gebiet';
 import { sequelize } from './database';
+import { Gebiet } from './db/initdb';
 
 dotenv.config();
 
@@ -33,15 +34,21 @@ const locations = [
 ];
 
 // Locations API endpoint 
-app.get('/api/locations', (req, res) => {
-  res.status(200).json(locations);
+app.get('/api/locations', async (req: Request, res: Response) => {
+  try {
+    const gebiete = await Gebiet.findAll();
+    res.json(gebiete);
+  } catch (error) {
+    console.error('Error fetching Gebiete:', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.post('/api/locations', async (req: Request, res: Response) => {
   try {
-    const { name, LastUpdate, Oeffnungszeiten, AnzahlAnlagen, Region, xKoordinate, yKoordinate, Bewertung, Preis } = req.body;
+    const { name, lastUpdate, openingHours, numberOfAnlagen, xCoordinate, yCoordinate, website, region, rating, price } = req.body;
     
-    const newGebiet = await createGebiet(name, LastUpdate, Oeffnungszeiten, AnzahlAnlagen, Region, xKoordinate, yKoordinate, Bewertung, Preis);
+    const newGebiet = await createGebiet(name, lastUpdate, openingHours, numberOfAnlagen, xCoordinate, yCoordinate, website, region, rating, price);
     
     res.status(201).json(newGebiet);
   } catch (error) {

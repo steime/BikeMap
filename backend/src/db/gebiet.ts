@@ -2,39 +2,39 @@ import { Gebiet } from "./initdb";
 
 export const createGebiet = async (
   name: string,
-  LastUpdate: string,
-  Oeffnungszeiten: string,
-  AnzahlAnlagen: number,
-  Region: string,
-  Webseite :string,
-  xKoordinate: number,
-  yKoordinate: number,
-  Bewertung?: number,  // Optional
-  Preis?: number       // Optional
+  lastUpdate: string,
+  openingHours: string,
+  numberOfAnlagen: number,
+  xCoordinate: number,
+  yCoordinate: number,
+  website? :string,
+  region?: string,
+  rating?: number, 
+  price?: number 
 ) => {
   try {
     console.log(name);
 
     // Parse dates
-    const parsedLastUpdate = new Date(LastUpdate);
-    const parsedOeffnungszeiten = new Date(Oeffnungszeiten);
+    const parsedLastUpdate = new Date(lastUpdate);
+    const parsedOeffnungszeiten = new Date(openingHours);
 
     // Basic null checks
-    if (!name || !LastUpdate || !Oeffnungszeiten || !AnzahlAnlagen || !Region || !xKoordinate || !yKoordinate || !Webseite) {
+    if (!name || !lastUpdate || !openingHours || !numberOfAnlagen || !xCoordinate || !yCoordinate) {
       throw new Error('Missing mandatory fields');
     }
 
     const gebiet = await Gebiet.create({
       name,
-      LastUpdate: parsedLastUpdate,
-      Oeffnungszeiten: parsedOeffnungszeiten,
-      AnzahlAnlagen,
-      Region,
-      Webseite,
-      xKoordinate,
-      yKoordinate,
-      Bewertung, // Can be undefined
-      Preis      // Can be undefined
+      lastUpdate: parsedLastUpdate,
+      openingHours: parsedOeffnungszeiten,
+      numberOfAnlagen,
+      xCoordinate,
+      yCoordinate,
+      website,
+      region,
+      rating,
+      price 
     });
 
     console.log('Gebiet created:', gebiet.toJSON());

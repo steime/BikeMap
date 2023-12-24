@@ -278,45 +278,46 @@ components:
     Gebiet:
       type: object
       properties:
-        UUID:
+        id:
           type: string
           format: uuid
-        Öffnungszeiten:
+        name:
           type: string
-        Datum:
+        lastUpdate:
           type: string
           format: date
-        Name:
+        openingHours:
           type: string
-        x-Koordinate:
+        numberOfAnlagen:
+          type: integer
+        x-Coordinate:
           type: number
           format: double
-        y-Koordinate:
+        y-Coordinate:
           type: number
           format: double
+        website:
+          type: string
+          format: uri
+        region:
+          type: string
+        rating:
+          type: number
+          format: float
+        price:
+          type: number
+          format: float
         Anlagen:
           type: array
           items:
             type: string
             format: uuid
-        AnzahlAnlagen:
-          type: integer
-        Bewertung:
-          type: number
-          format: float
-        Region:
-          type: string
-        Webseite:
-          type: string
-          format: uri
-        Preis:
-          type: number
-          format: float
       required:
-        - UUID
-        - Öffnungszeiten
-        - Datum
-        - Name
+        - id
+        - name
+        - lastUpdate
+        - openingHours
+        - numberOfAnlagen
         - x-Koordinate
         - y-Koordinate
         - Anlagen

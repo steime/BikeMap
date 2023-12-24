@@ -8,15 +8,15 @@ export class Gebiet extends Model {
   // Define attributes
   public id!: string; // Assuming UUID
   public name!: string;
-  public LastUpdate!: Date;
-  public Oeffnungszeiten!: Date;
-  public AnzahlAnlagen!: number;
-  public Region!: string;
-  public Bewertung?: number;  // Optional
-  public xKoordinate!: number;
-  public yKoordinate!: number;
-  public Preis?: number;      // Optional
-  public Webseite?: string;
+  public lastUpdate!: Date;
+  public openingHours!: Date;
+  public numberOfAnlagen!: number;
+  public xCoordinate!: number;
+  public yCoordinate!: number;
+  public website?: string;
+  public region?: string;
+  public rating?: number;  // Optional
+  public price?: number;      // Optional
   // Add more fields as necessary
 }
 
@@ -32,44 +32,44 @@ Gebiet.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    LastUpdate: {
+    lastUpdate: {
       type: DataTypes.DATE,
       allowNull: false,
       unique: false,
     },
-    Oeffnungszeiten: {
+    openingHours: {
       type: DataTypes.DATE,
       allowNull: false,
       unique: false,
     },
-    AnzahlAnlagen: {
+    numberOfAnlagen: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: false,
     },
-    Region: {
+    region: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
-    Bewertung: {
+    rating: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    Webseite: {
+    website: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    xKoordinate: {
+    xCoordinate: {
       type: DataTypes.DOUBLE,
       allowNull: false,
       unique: false,
     },
-    yKoordinate: {
+    yCoordinate: {
       type: DataTypes.DOUBLE,
       allowNull: false,
       unique: false,
     },
-    Preis: {
+    price: {
       type: DataTypes.DOUBLE,
       allowNull: true,
       unique: false,
