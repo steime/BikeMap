@@ -1,7 +1,24 @@
-import { DataTypes, UUIDV4 } from "sequelize";
+import { DataTypes, Model, UUIDV4 } from "sequelize";
 import { Anlage } from "./anlage";
-import { Gebiet } from "./gebiet";
-import { sequelize } from "..";
+import { sequelize } from "../database";
+
+console.log(sequelize)
+
+export class Gebiet extends Model {
+  // Define attributes
+  public id!: string; // Assuming UUID
+  public name!: string;
+  public LastUpdate!: Date;
+  public Oeffnungszeiten!: Date;
+  public AnzahlAnlagen!: number;
+  public Region!: string;
+  public Bewertung?: number;  // Optional
+  public xKoordinate!: number;
+  public yKoordinate!: number;
+  public Preis?: number;      // Optional
+  public Webseite?: string;
+  // Add more fields as necessary
+}
 
 Gebiet.init(
   {
@@ -9,8 +26,7 @@ Gebiet.init(
       type: DataTypes.UUID,
       defaultValue: UUIDV4,
       primaryKey: true,
-      allowNull: false,
-      autoIncrement: true,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
@@ -34,30 +50,27 @@ Gebiet.init(
     Region: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     Bewertung: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      unique: false,
     },
     Webseite: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+      allowNull: true,
     },
     xKoordinate: {
-      type: DataTypes.GEOMETRY,
+      type: DataTypes.DOUBLE,
       allowNull: false,
       unique: false,
     },
     yKoordinate: {
-      type: DataTypes.GEOMETRY,
+      type: DataTypes.DOUBLE,
       allowNull: false,
       unique: false,
     },
     Preis: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DOUBLE,
       allowNull: true,
       unique: false,
     },     
@@ -76,7 +89,6 @@ Anlage.init(
       defaultValue: UUIDV4,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
     },
 
     name: {

@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv'
-import { Sequelize } from 'sequelize';
+import { createGebiet } from './db/gebiet';
+import { sequelize } from './database';
 
 dotenv.config();
 
@@ -20,6 +21,10 @@ app.use((req, res, next) => {
   next();
 }); 
  
+
+console.log(sequelize)
+
+
 // An array of locations
 const locations = [
   { id: 1, name: 'Davos', latitude: 46.80, longitude: 9.837 },
@@ -32,24 +37,33 @@ app.get('/api/locations', (req, res) => {
   res.status(200).json(locations);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.post('/api/locations', async (req: Request, res: Response) => {
+  try {
+    const { name, LastUpdate, Oeffnungszeiten, AnzahlAnlagen, Region, xKoordinate, yKoordinate, Bewertung, Preis } = req.body;
+    
+    const newGebiet = await createGebiet(name, LastUpdate, Oeffnungszeiten, AnzahlAnlagen, Region, xKoordinate, yKoordinate, Bewertung, Preis);
+    
+    res.status(201).json(newGebiet);
+  } catch (error) {
+    console.error('Error in POST /gebiete:', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
-console.log('DATABASE_URL from env:', process.env.DATABASE_URL);  
-export const sequelize = new Sequelize(databaseUrl, {
-  dialect: 'postgres',
-});
-
-// Test the connection, wait 5 seconds to connect
-setTimeout(() => {
-sequelize
-  .authenticate()
+sequelize.authenticate()
   .then(async () => {
     console.log('Connection to the database has been established successfully.');
     
+    // Synchronize the models
+    await sequelize.sync({ force: false });
+    console.log('Database synchronized');
+
+    // Start the server here
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`);
+    });
+
   })
   .catch((error) => {
     console.error('Unable to connect to the database:', error);
   });
-}, 5000);

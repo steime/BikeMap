@@ -1,25 +1,46 @@
-import { UUID } from "crypto";
-import { Model } from "sequelize";
+import { Gebiet } from "./initdb";
 
+export const createGebiet = async (
+  name: string,
+  LastUpdate: string,
+  Oeffnungszeiten: string,
+  AnzahlAnlagen: number,
+  Region: string,
+  Webseite :string,
+  xKoordinate: number,
+  yKoordinate: number,
+  Bewertung?: number,  // Optional
+  Preis?: number       // Optional
+) => {
+  try {
+    console.log(name);
 
-export class Gebiet extends Model {
-    public id!: UUID;
-    public name!: string;
-    public LastUpdate!: Date;
-    public Oeffnungszeiten!: Date;
-    public AnzahlAnlagen!: number;
-    public Region!: string;
-    public Bewertung!: number;
-    public xKoordinate!: number;
-    public yKoordinate!: number;
-    public Preis!: number;        
+    // Parse dates
+    const parsedLastUpdate = new Date(LastUpdate);
+    const parsedOeffnungszeiten = new Date(Oeffnungszeiten);
+
+    // Basic null checks
+    if (!name || !LastUpdate || !Oeffnungszeiten || !AnzahlAnlagen || !Region || !xKoordinate || !yKoordinate || !Webseite) {
+      throw new Error('Missing mandatory fields');
     }
 
-export const createGebiet = async (name: string, LastUpdate: Date, Oeffnungszeiten: Date, AnzahlAnlagen: number, Region: string, Bewertung: number, xKoordinate: number, yKoordinate: number, Preis: number) => {
-    try {
-      const gebiet = await Gebiet.create({name, LastUpdate, Oeffnungszeiten, AnzahlAnlagen, Region, Bewertung, xKoordinate, yKoordinate, Preis });
-      console.log('Gebiet created:', gebiet.toJSON());
-    } catch (error) {
-      console.error('Error creating Gebiet:', error);
-    }
+    const gebiet = await Gebiet.create({
+      name,
+      LastUpdate: parsedLastUpdate,
+      Oeffnungszeiten: parsedOeffnungszeiten,
+      AnzahlAnlagen,
+      Region,
+      Webseite,
+      xKoordinate,
+      yKoordinate,
+      Bewertung, // Can be undefined
+      Preis      // Can be undefined
+    });
+
+    console.log('Gebiet created:', gebiet.toJSON());
+    return gebiet;
+  } catch (error) {
+    console.error('Error creating Gebiet:', error);
+    throw error; // Rethrow to handle in the calling function
+  }
 };
