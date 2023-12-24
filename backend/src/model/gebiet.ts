@@ -1,4 +1,4 @@
-import { Gebiet } from "./initdb";
+import { Gebiet } from "./modelDefinition";
 
 export const createGebiet = async (
   name: string,
