@@ -29,7 +29,7 @@
     * Status (in Betrieb/geschlossen)
     * Trails [List] (Foreign Key) *
 
-* Trails
+* Trail
     * UUID (Primary Key) * 
     * Name
     * Status (offen/zu) *
