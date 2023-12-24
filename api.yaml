@@ -347,8 +347,8 @@ components:
         - name
         - openingHours
         - openDate
+        - biketransport
         - state
-        - trails
 
     Trail:
       type: object

@@ -1,12 +1,8 @@
 import { DataTypes, Model, UUIDV4 } from "sequelize";
-import { Anlage } from "./anlage";
 import { sequelize } from "../database";
 
-console.log(sequelize)
-
 export class Gebiet extends Model {
-  // Define attributes
-  public id!: string; // Assuming UUID
+  public id!: string;
   public name!: string;
   public lastUpdate!: Date;
   public openingHours!: Date;
@@ -15,10 +11,19 @@ export class Gebiet extends Model {
   public yCoordinate!: number;
   public website?: string;
   public region?: string;
-  public rating?: number;  // Optional
-  public price?: number;      // Optional
-  // Add more fields as necessary
+  public rating?: number;  
+  public price?: number;   
 }
+
+export class Anlage extends Model {
+  public id!: string;
+  public name!: string;
+  public openingHours!: Date;
+  public openDate!: string;
+  public biketransport!: boolean;
+  public state!: string;
+}
+
 
 Gebiet.init(
   {
@@ -73,7 +78,7 @@ Gebiet.init(
       type: DataTypes.DOUBLE,
       allowNull: true,
       unique: false,
-    },     
+    },
   },
   {
     sequelize,
@@ -90,28 +95,24 @@ Anlage.init(
       primaryKey: true,
       allowNull: false,
     },
-
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
     },
-
-    Betriebsdaten: {
+    openingHours: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-
-    Betriebszeit: {
+    openDate: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Biketransport: {
-      type: DataTypes.ENUM('0','1'),
+    biketransport: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    Status: {
-      type: DataTypes.ENUM('0','1'),
+    state: {
+      type: DataTypes.ENUM('in Betrieb', 'geschlossen'),
       allowNull: false,
     },
   },
