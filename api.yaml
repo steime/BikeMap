@@ -307,13 +307,12 @@ components:
         price:
           type: number
           format: float
-        Anlagen:
+        anlagen:
           type: array
           items:
             type: string
             format: uuid
       required:
-        - id
         - name
         - lastUpdate
         - openingHours
@@ -325,59 +324,59 @@ components:
     Anlage:
       type: object
       properties:
-        UUID:
+        id:
           type: string
           format: uuid
-        Betriebszeit:
+        name:
           type: string
-        Betriebsdaten:
+        openingHours:
           type: string
-        Biketransport:
+        openDate:
+          type: string
+        biketransport:
           type: boolean
-        Name:
-          type: string
-        Status:
+        state:
           type: string
           enum: [in Betrieb, geschlossen]
-        Trails:
+        trails:
           type: array
           items:
             type: string
             format: uuid
       required:
-        - UUID
-        - Betriebszeit
-        - Betriebsdaten
-        - Name
-        - Trails
+        - name
+        - openingHours
+        - openDate
+        - state
+        - trails
 
     Trail:
       type: object
       properties:
-        UUID:
+        id:
           type: string
           format: uuid
-        Name:
+        name:
           type: string
-        Status:
+        state:
           type: string
           enum: [offen, zu]
-        Länge:
+        length:
           type: number
           format: float
-        Tiefenmeter:
+        decendMeters:
           type: number
           format: float
-        Schwierigkeit:
+        difficulty:
           type: string
-        Bewertung:
+        rating:
           type: number
           format: float
-        Trailart:
+        trailType:
           type: string
       required:
-        - UUID
-        - Status
+        - name
+        - state
 
     CrawlingLinks:
       type: object
