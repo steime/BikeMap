@@ -7,7 +7,7 @@ interface MapComponentProps {
     gebiete: Gebiet[];
 }
 
-const MapComponent: React.FC<MapComponentProps> = ({gebiete}) => {
+const MapComponent: React.FC<MapComponentProps> = ({ gebiete }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     const mapInstance = useRef<L.Map | null>(null);
 
@@ -22,9 +22,18 @@ const MapComponent: React.FC<MapComponentProps> = ({gebiete}) => {
 
         if (mapInstance.current) {
             gebiete.forEach(gebiet => {
-                L.marker([gebiet.xCoordinate, gebiet.yCoordinate],  { icon: customIcon })
+                const popupContent = `
+                <div>
+                    <h4>${gebiet.name}</h4>
+                    <p>${gebiet.openingHours}</p>
+                    <p>Coordinates: ${gebiet.xCoordinate}, ${gebiet.yCoordinate}</p>
+                    <a href="${gebiet.website}" target="_blank" class="button-style">Webseite</a>
+                </div>
+                `
+
+                L.marker([gebiet.xCoordinate, gebiet.yCoordinate], { icon: customIcon })
                     .addTo(mapInstance.current!)
-                    .bindPopup(gebiet.name);
+                    .bindPopup(popupContent);
             });
         }
 
