@@ -14,7 +14,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ gebiete }) => {
     useEffect(() => {
         if (mapRef.current && !mapInstance.current) {
             // Initialize the map
-            mapInstance.current = L.map(mapRef.current).setView([46, 9], 9);
+            mapInstance.current = L.map(mapRef.current).setView([47, 8.4], 8.5);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(mapInstance.current);
@@ -27,7 +27,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ gebiete }) => {
                     <h4>${gebiet.name}</h4>
                     <p>${gebiet.openingHours}</p>
                     <p>Coordinates: ${gebiet.xCoordinate}, ${gebiet.yCoordinate}</p>
-                    <a href="${gebiet.website}" target="_blank" class="button-style">Webseite</a>
+                    <a href="${gebiet.website}" target="_blank" class="Button-Style">Webseite</a>
                 </div>
                 `
 
@@ -46,7 +46,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ gebiete }) => {
         };
     }, [gebiete]);
 
-    return <div className = "map-component" ref={mapRef} style={{ height: '1800px' }} />;
+    return <div className = "Map-Component" ref={mapRef}/>;
 };
 
 export default MapComponent;

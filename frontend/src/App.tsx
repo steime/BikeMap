@@ -4,11 +4,13 @@ import MapComponent from './MapComponent';
 import { Gebiet } from './types';
 import SearchBar from './SearchBar';
 import logo from './CCBikersLogo.jpg'
+import BurgerMenu from './BurgerMenu';
 
 const App: React.FC = () => {
 
   const [gebiete, setGebiete] = useState<Gebiet[]>([]);
   const [filteredGebiete, setFilteredGebiete] = useState<Gebiet[]>([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         fetch('http://localhost:3000/api/gebiet')
@@ -30,18 +32,24 @@ const App: React.FC = () => {
         setFilteredGebiete(filtered);
       };
 
+      const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+        console.log("Menu toggled", !isMenuOpen);
+      };
+
       return (
         <div className="App">
-            <header className="App-header">
-              <img src={logo} alt="Logo" className='logo'></img>
+            <header className="App-Header">
+              <img src={logo} alt="Logo" className='Logo'></img>
               <h2>CC-Bikers</h2>
               <SearchBar onSearch={handleSearch} gebiete={gebiete}/>
+              <BurgerMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} onClick={toggleMenu} />
             </header>
-            <div className='map-container'>
+            <div className='Map-Container'>
                 <MapComponent gebiete={filteredGebiete}/>
             </div>
-            <footer>
-                <a href='www.goggle.ch'>Impressum</a>
+            <footer className='App-Footer'>
+                <a className='App-Link' href='www.goggle.ch'>Impressum</a>
             </footer>
         </div>
     );

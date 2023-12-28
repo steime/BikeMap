@@ -18,14 +18,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="search-container">
+    <div className="Search-Container">
       <input
+        className='Search-Bar'
         type="text"
         value={searchQuery}
         onChange={handleSearchChange}
         placeholder="Search Gebiete..."
       />
-      <button className="search-icon">
+      <button className="Search-Icon">
         <FontAwesomeIcon icon={faSearch} />
       </button>
     </div>
