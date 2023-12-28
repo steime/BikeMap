@@ -3,6 +3,7 @@ import './App.css';
 import MapComponent from './MapComponent';
 import { Gebiet } from './types';
 import SearchBar from './SearchBar';
+import logo from './CCBikersLogo.jpg'
 
 const App: React.FC = () => {
 
@@ -32,6 +33,7 @@ const App: React.FC = () => {
       return (
         <div className="App">
             <header className="App-header">
+              <img src={logo} alt="Logo" className='logo'></img>
               <h2>CC-Bikers</h2>
               <SearchBar onSearch={handleSearch} gebiete={gebiete}/>
             </header>
