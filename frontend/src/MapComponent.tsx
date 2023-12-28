@@ -46,7 +46,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ gebiete }) => {
         };
     }, [gebiete]);
 
-    return <div ref={mapRef} style={{ height: '1800px' }} />;
+    return <div className = "map-component" ref={mapRef} style={{ height: '1800px' }} />;
 };
 
 export default MapComponent;
