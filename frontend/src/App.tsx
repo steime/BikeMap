@@ -31,6 +31,7 @@ const App: React.FC = () => {
       });
   }, []);
 
+  // TODO: implement search alongside with filtering, currently not working properly
   const handleSearch = (query: string) => {
     const filtered = gebiete.filter(gebiet =>
       gebiet.name.toLowerCase().includes(query.toLowerCase()) &&
@@ -39,7 +40,7 @@ const App: React.FC = () => {
     setFilteredGebiete(filtered);
   };
 
-  // Function to determine if a Gebiet is open
+  //TODO: implement function, only set to open, when actually open
   const isGebietOpen = (currentDate: Date, gebiet: Gebiet): boolean => {
     // Add your logic here to check if the Gebiet should be open or not
     // This is a placeholder logic, replace it with your actual conditions
@@ -51,6 +52,7 @@ const App: React.FC = () => {
     return currentDate === currentDateTest;
   };
 
+  // TODO: implement burger menu, when needed
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };

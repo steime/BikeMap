@@ -1,5 +1,6 @@
 import { Gebiet } from "./modelDefinition";
 
+// TODO add opening hours as indenpendent table with a relation to gebiete
 export const createGebiet = async (
   name: string,
   lastUpdate: string,
