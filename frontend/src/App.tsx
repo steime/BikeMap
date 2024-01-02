@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import MapComponent from './MapComponent';
+import MapComponent from './Components/MapComponent';
 import { Gebiet } from './types';
-import SearchBar from './SearchBar';
+import SearchBar from './Components/SearchBar';
 import logo from './CCBikersLogo.jpg'
-import BurgerMenu from './BurgerMenu';
-import SidePanel from './SidePanel';
+import BurgerMenu from './Components/BurgerMenu';
+import SidePanel from './Components/SidePanel';
 
 const App: React.FC = () => {
 
@@ -47,6 +47,7 @@ const App: React.FC = () => {
         <BurgerMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} onClick={toggleMenu} />
       </header>
       <div className='MapContainer'>
+        <SidePanel onSearch={handleSearch} gebiete={gebiete} />
         <MapComponent gebiete={filteredGebiete} />
       </div>
       <footer className='AppFooter'>
