@@ -6,13 +6,14 @@ export interface Gebiet {
     name: string,
     lastUpdate: string,
     openingHours: string,
+    isOpen: boolean,
     numberOfAnlagen: number,
     xCoordinate: number,
     yCoordinate: number,
-    website? :string,
+    website?: string,
     region?: string,
-    rating?: number, 
-    price?: number 
+    rating?: number,
+    price?: number
 }
 
 export const customIcon = new L.Icon({
@@ -22,4 +23,4 @@ export const customIcon = new L.Icon({
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
-  });
+});
