@@ -27,7 +27,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ gebiete }) => {
                     <h4>${gebiet.name}</h4>
                     <p>${gebiet.openingHours}</p>
                     <p>Coordinates: ${gebiet.xCoordinate}, ${gebiet.yCoordinate}</p>
-                    <a href="${gebiet.website}" target="_blank" class="Button-Style">Webseite</a>
+                    <a href="${gebiet.website}" target="_blank" class="ButtonStyle">Webseite</a>
                 </div>
                 `
 
@@ -46,7 +46,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ gebiete }) => {
         };
     }, [gebiete]);
 
-    return <div className = "Map-Component" ref={mapRef}/>;
+    return <div className="MapComponent" ref={mapRef} />;
 };
 
 export default MapComponent;

@@ -1,4 +1,3 @@
-// SearchBar.tsx
 import React, { useState } from 'react';
 import { Gebiet } from './types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,15 +17,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="Search-Container">
+    <div className="SearchContainer">
       <input
-        className='Search-Bar'
+        className='SearchBar'
         type="text"
         value={searchQuery}
         onChange={handleSearchChange}
         placeholder="Search Gebiete..."
       />
-      <button className="Search-Icon">
+      <button className="SearchIcon">
         <FontAwesomeIcon icon={faSearch} />
       </button>
     </div>
