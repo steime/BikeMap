@@ -7,6 +7,7 @@ interface MapComponentProps {
     gebiete: Gebiet[];
 }
 
+//TODO prevent reloading of the map on user input on the search bar and filter
 const MapComponent: React.FC<MapComponentProps> = ({ gebiete }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     const mapInstance = useRef<L.Map | null>(null);
