@@ -5,16 +5,16 @@ import FilterBox from './FilterBox';
 
 interface SidePanelProps {
     gebiete: Gebiet[];
-    onSearch: (query: string) => void;
+    onSearchChange: (query: string) => void;
     isOpenFilter: boolean;
-    onIsOpenChange: (query: boolean) => void;
+    onIsOpenChange: (checked: boolean) => void;
 
 }
 
-const SidePanel: React.FC<SidePanelProps> = ({ gebiete, onSearch, isOpenFilter, onIsOpenChange }) => {
+const SidePanel: React.FC<SidePanelProps> = ({ gebiete, onSearchChange, isOpenFilter, onIsOpenChange }) => {
     return (
         <div className='SidePanel'>
-            <SearchBar onSearch={onSearch} gebiete={gebiete} />
+            <SearchBar onSearchChange={onSearchChange} gebiete={gebiete} />
             <FilterBox isOpenFilter={isOpenFilter} onIsOpenChange={onIsOpenChange} />
         </div>
     )

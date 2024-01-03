@@ -5,15 +5,15 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 interface SearchBarProps {
   gebiete: Gebiet[];
-  onSearch: (query: string) => void;
+  onSearchChange: (query: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearchChange }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
-    onSearch(event.target.value);
+    onSearchChange(event.target.value);
   };
 
   return (
@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         type="text"
         value={searchQuery}
         onChange={handleSearchChange}
-        placeholder="Search Gebiete..."
+        placeholder="Gebiete durchsuchen..."
       />
       <button className="SearchIcon">
         <FontAwesomeIcon icon={faSearch} />

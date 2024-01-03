@@ -12,6 +12,7 @@ const App: React.FC = () => {
   const [filteredGebiete, setFilteredGebiete] = useState<Gebiet[]>([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const currentDate = new Date();
@@ -31,16 +32,17 @@ const App: React.FC = () => {
       });
   }, []);
 
-  // TODO: implement search alongside with filtering, currently not working properly
   const handleSearch = (query: string) => {
+
     const filtered = gebiete.filter(gebiet =>
-      gebiet.name.toLowerCase().includes(query.toLowerCase()) &&
-      (!isOpenFilter || gebiet.isOpen)
+      gebiet.name.toLowerCase().includes(query.toLowerCase())
     );
+    setSearchQuery(query);
     setFilteredGebiete(filtered);
   };
 
-  //TODO: implement function, only set to open, when actually open
+
+  //TODO: implement function, only set to open, when actually open or move to the backend
   const isGebietOpen = (currentDate: Date, gebiet: Gebiet): boolean => {
     // Add your logic here to check if the Gebiet should be open or not
     // This is a placeholder logic, replace it with your actual conditions
@@ -59,7 +61,7 @@ const App: React.FC = () => {
 
   const handleIsOpenChange = (checked: boolean) => {
     setIsOpenFilter(checked);
-    handleSearch('');
+    handleSearch(searchQuery);
   };
 
   return (
@@ -71,7 +73,7 @@ const App: React.FC = () => {
       </header>
       <div className='MapContainer'>
         <SidePanel
-          onSearch={handleSearch}
+          onSearchChange={handleSearch}
           gebiete={gebiete}
           isOpenFilter={isOpenFilter}
           onIsOpenChange={handleIsOpenChange} />

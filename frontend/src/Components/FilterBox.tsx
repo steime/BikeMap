@@ -1,10 +1,9 @@
 interface FilterBoxProps {
     isOpenFilter: boolean;
-    onIsOpenChange: (query: boolean) => void;
+    onIsOpenChange: (checked: boolean) => void;
 }
 
 const FilterBox: React.FC<FilterBoxProps> = ({ isOpenFilter, onIsOpenChange }) => {
-
 
     return (
         <div className="FilterBox">
@@ -14,7 +13,7 @@ const FilterBox: React.FC<FilterBoxProps> = ({ isOpenFilter, onIsOpenChange }) =
                     checked={isOpenFilter}
                     onChange={(e) => onIsOpenChange(e.target.checked)}
                 />
-                Show Open Areas Only
+                Nur geöffnete Anlagen anzeigen
             </label></div>
     )
 }
